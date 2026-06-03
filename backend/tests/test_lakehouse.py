@@ -1,6 +1,4 @@
-import os
 import sys
-import pytest
 import polars as pl
 import xgboost as xgb
 import numpy as np
@@ -9,7 +7,6 @@ from pathlib import Path
 # Add parent directories to sys.path to enable app module imports
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from app.pipeline.etl_lakehouse import run_silver_etl_pipeline
 from app.ai.matcher import cosine_similarity
 
 def test_polars_silver_parquet_logic():

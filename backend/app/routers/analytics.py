@@ -1,8 +1,5 @@
-import os
 import xgboost as xgb
 import numpy as np
-import polars as pl
-import duckdb
 from pathlib import Path
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, BackgroundTasks
@@ -27,8 +24,6 @@ def get_lakehouse_telemetry():
     try:
         # Query total applications in CRM
         total_jobs = conn.execute("SELECT COUNT(*) FROM applications").fetchone()[0]
-        staged_jobs = conn.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='stg_applications'").fetchone()
-        has_staged = staged_jobs[0] > 0 if staged_jobs else False
         
         # Query total mock interviews
         total_interviews = conn.execute("SELECT COUNT(*) FROM interviews").fetchone()[0]

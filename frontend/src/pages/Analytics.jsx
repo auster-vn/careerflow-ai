@@ -33,7 +33,7 @@ export default function Analytics() {
       const data = await api.triggerEtl();
       setTriggerLog(prev => prev + `Success: ${data.message}\nPrefect Flow State: RUNNING (Bronze Ingest -> Silver ETL -> Gold Sync)\n`);
       setTimeout(fetchTelemetry, 2000);
-    } catch (err) {
+    } catch {
       setTriggerLog(prev => prev + `Error: Prefect server contact failed.\n`);
     } finally {
       setEtlTriggering(false);
@@ -47,7 +47,7 @@ export default function Analytics() {
       const data = await api.triggerMlRetrain();
       setTriggerLog(prev => prev + `Success: ${data.message}\nPrefect Flow State: RUNNING (XGBoost Salary Regressor & Success Classifier retraining logged to MLflow)\n`);
       setTimeout(fetchTelemetry, 2000);
-    } catch (err) {
+    } catch {
       setTriggerLog(prev => prev + `Error: Prefect MLOps link offline.\n`);
     } finally {
       setMlTriggering(false);

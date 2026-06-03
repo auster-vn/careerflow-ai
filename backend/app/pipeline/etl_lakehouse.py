@@ -1,4 +1,3 @@
-import os
 import boto3
 import polars as pl
 import duckdb
@@ -209,7 +208,7 @@ def sync_lakehouse_to_duckdb():
             FROM silver_temp
             """)
             
-            print(f"[Database Sync] Synchronized S3 Silver Lakehouse with local DuckDB CRM.")
+            print("[Database Sync] Synchronized S3 Silver Lakehouse with local DuckDB CRM.")
             return True
         except Exception as ex:
             print(f"[Database Sync Error] DuckDB transaction failed: {ex}")

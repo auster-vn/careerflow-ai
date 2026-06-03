@@ -1,7 +1,7 @@
 import httpx
 import json
 import random
-from typing import Dict, List, Tuple
+from typing import Dict, List
 from app import config
 from app.pipeline.parser import clean_and_tokenize, TECHNICAL_DICTIONARY
 

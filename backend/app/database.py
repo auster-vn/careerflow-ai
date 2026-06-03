@@ -1,6 +1,5 @@
 import duckdb
 import lancedb
-import os
 from pathlib import Path
 from app.config import DATABASE_PATH, LANCEDB_URI
 

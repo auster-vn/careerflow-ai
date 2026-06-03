@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, Depends
-from pydantic import BaseModel, HttpUrl
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 from typing import Optional, List
 from app.database import get_db_connection
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { api } from '../services/api';
 import SpeechVisualizer from '../components/interview/SpeechVisualizer';
 import TranscriptBubble from '../components/interview/TranscriptBubble';
-import LoadingSpinner from '../components/common/LoadingSpinner';
 
 export default function InterviewSimulator({ selectedJob, setSelectedJob }) {
   const [jobs, setJobs] = useState([]);
@@ -16,7 +15,6 @@ export default function InterviewSimulator({ selectedJob, setSelectedJob }) {
   // Active round Q&A states
   const [userAnswer, setUserAnswer] = useState('');
   const [submittingAnswer, setSubmittingAnswer] = useState(false);
-  const [evaluationResult, setEvaluationResult] = useState(null); // Last graded answer result
   const [interviewComplete, setInterviewComplete] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -151,7 +149,6 @@ export default function InterviewSimulator({ selectedJob, setSelectedJob }) {
     setLoadingSession(true);
     setErrorMsg('');
     setInterviewComplete(false);
-    setEvaluationResult(null);
 
     try {
       const data = await api.startInterview(targetJobId);
@@ -188,7 +185,6 @@ export default function InterviewSimulator({ selectedJob, setSelectedJob }) {
 
     setUserAnswer('');
     setSubmittingAnswer(true);
-    setEvaluationResult(null);
 
     // Stop listening if active
     if (isListening) {
@@ -217,12 +213,6 @@ export default function InterviewSimulator({ selectedJob, setSelectedJob }) {
         )
       );
 
-      setEvaluationResult({
-        score: data.evaluation.score,
-        feedback: data.evaluation.feedback,
-        model_answer: data.evaluation.model_answer
-      });
-
       if (data.is_complete) {
         setInterviewComplete(true);
         speakQuestion("The mock interview has concluded. Thank you for your responses. Please review the detailed report card.");
@@ -240,7 +230,7 @@ export default function InterviewSimulator({ selectedJob, setSelectedJob }) {
         setActiveSession(prev => ({ ...prev, current_question: data.next_question }));
         speakQuestion(data.next_question);
       }
-    } catch (err) {
+    } catch {
       setErrorMsg("Failed to evaluate answer.");
     } finally {
       setSubmittingAnswer(false);

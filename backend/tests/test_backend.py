@@ -1,6 +1,4 @@
-import os
 import sys
-import pytest
 import duckdb
 from pathlib import Path
 

@@ -42,7 +42,7 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
         # Return fallback text decode if pdfplumber fails
         try:
             text = pdf_bytes.decode("utf-8", errors="ignore")
-        except:
+        except Exception:
             text = ""
     return text.strip()
 

@@ -1,8 +1,8 @@
 import uuid
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import List
 from app.database import get_db_connection
 from app.ai.coach import generate_next_question, evaluate_user_response
 

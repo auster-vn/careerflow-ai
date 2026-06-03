@@ -1,4 +1,3 @@
-import os
 import sys
 import duckdb
 import numpy as np
@@ -131,7 +130,7 @@ def train_success_classifier():
             # If all test samples belong to one class (common in tiny synthetic sets), fallback ROC calculation
             try:
                 roc_auc = float(roc_auc_score(y_test, preds_prob))
-            except:
+            except Exception:
                 roc_auc = 1.0
                 
             acc = float(accuracy_score(y_test, preds_bin))

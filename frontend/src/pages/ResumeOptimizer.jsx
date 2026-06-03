@@ -75,6 +75,23 @@ export default function ResumeOptimizer({ selectedJob, setSelectedJob, onFetchRe
     );
   };
 
+  // Trigger analysis helper
+  const triggerAnalysis = async (jobId) => {
+    if (!jobId) return;
+    setAnalyzing(true);
+    setErrorMsg('');
+    setMatchResult(null);
+
+    try {
+      const data = await api.analyzeResume(jobId);
+      setMatchResult(data);
+    } catch (e) {
+      setErrorMsg(e.message || "ATS Analysis failed.");
+    } finally {
+      setAnalyzing(false);
+    }
+  };
+
   // Fetch active resume & crm jobs on mount
   const loadData = async () => {
     try {
@@ -107,23 +124,6 @@ export default function ResumeOptimizer({ selectedJob, setSelectedJob, onFetchRe
     // Clean up selected job preset on unmount
     return () => setSelectedJob(null);
   }, []);
-
-  // Trigger analysis helper
-  const triggerAnalysis = async (jobId) => {
-    if (!jobId) return;
-    setAnalyzing(true);
-    setErrorMsg('');
-    setMatchResult(null);
-
-    try {
-      const data = await api.analyzeResume(jobId);
-      setMatchResult(data);
-    } catch (e) {
-      setErrorMsg(e.message || "ATS Analysis failed.");
-    } finally {
-      setAnalyzing(false);
-    }
-  };
 
   // Upload file handler
   const handleFileUpload = async (e) => {

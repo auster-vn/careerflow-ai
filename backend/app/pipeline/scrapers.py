@@ -26,7 +26,6 @@ import re
 import random
 import logging
 from typing import List, Dict, Optional
-from urllib.parse import urlencode
 
 import requests
 from bs4 import BeautifulSoup
@@ -845,7 +844,6 @@ def crawl_vietnamese_jobs(keyword: str) -> List[Dict]:
 
 if __name__ == "__main__":
     import sys
-    import json
     logging.basicConfig(level=logging.INFO)
     kw = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "PHP developer"
     results = crawl_vietnamese_jobs(kw)

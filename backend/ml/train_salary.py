@@ -1,4 +1,3 @@
-import os
 import sys
 import duckdb
 import numpy as np
@@ -13,7 +12,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from app.config import DATABASE_PATH, MLFLOW_TRACKING_URI
 from app.database import init_databases
-from app.pipeline.parser import clean_and_tokenize, TECHNICAL_DICTIONARY
+from app.pipeline.parser import clean_and_tokenize
 
 def load_training_data():
     """Load historical applications to train the salary regressor model."""

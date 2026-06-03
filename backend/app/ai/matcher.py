@@ -1,9 +1,7 @@
 import lancedb
 import numpy as np
-import polars as pl
 import re
-import uuid
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Set
 from app.config import LANCEDB_URI
 from app.pipeline.parser import clean_and_tokenize, TECHNICAL_DICTIONARY
 
@@ -629,6 +627,13 @@ def analyze_resume_fit(resume_text: str, jd_text: str) -> Dict:
         if not recommendations:
             ok_msg = "Sự tương thích ngữ nghĩa và từ khóa tuyệt vời! Sẵn sàng ứng tuyển." if lang == "vi" else "Excellent semantic alignment and technical checklist matches! Ready to apply."
             recommendations.append(ok_msg)
+
+        return {
+            "fit_score": fit_score,
+            "matching_skills": fallback_data["matching_skills"],
+            "missing_skills": fallback_data["missing_skills"],
+            "recommendations": recommendations
+        }
     except Exception as e:
         print(f"[Matcher Error] LanceDB semantic matching failed: {e}. Defaulting to token parser.")
         return calculate_token_fallback(resume_text, jd_text)
