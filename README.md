@@ -37,6 +37,28 @@ flowchart TD
 
 ---
 
+## 🖥️ Interactive Dashboard & UI Showcases
+
+The application features a modern, glassmorphic dark-theme UI designed for maximum usability and aesthetic appeal:
+
+### 1. Job Search Pipeline (Kanban CRM Board)
+Track job applications across stages (**Wishlist**, **Applied**, **Interviewing**, **Offered/Offer**). Supports drag-and-drop cards, clearing all jobs, triggering real-time web scrapers, and viewing **XGBoost AI Forecasts** (predicting expected salary and success probabilities) directly on each card.
+![Job Search Pipeline](./docs/images/kanban_crm.png)
+
+### 2. Resume ATS Matcher
+Upload your master resume PDF and select a job from the CRM. The system performs a **LanceDB vector similarity sweep** (via `all-MiniLM-L6-v2`) to assess compatibility, highlight matching technologies, identify missing keywords (ATS gaps), and list specific optimizations.
+![Resume ATS Matcher](./docs/images/ats_matcher.png)
+
+### 3. AI Mock Interview Practice
+Practice speaking with an AI recruiter. It features **Web Speech API (STT/TTS)** for voice transcription and read-aloud prompts, an animated voice wave visualizer that pulses dynamically based on speech states, and detailed model-guided score evaluations.
+![AI Mock Interview Practice](./docs/images/interview_simulator.png)
+
+### 4. Lakehouse Analytics & MLOps Telemetry
+Monitor backend data operations and model health. Features real-time tracking of MinIO S3 Medallion storage partition sizes, Prefect ingestion pipeline latencies, and XGBoost regressor/classifier metrics (including ROC-AUC curve visualizations).
+![Lakehouse Analytics](./docs/images/lakehouse_analytics.png)
+
+---
+
 ## 🌟 Core Technical Features
 
 ### 1. Medallion Parquet Data Lakehouse (DE)
