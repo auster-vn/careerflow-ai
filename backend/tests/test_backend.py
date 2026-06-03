@@ -87,10 +87,17 @@ def test_ai_coach_evaluator():
     assert len(good_eval["feedback"]) > 0
     assert len(good_eval["model_answer"]) > 0
 
-def test_scraper_endpoint():
+def test_scraper_endpoint(monkeypatch):
     """Verify that GET /api/analytics/scrape is functional."""
     from fastapi.testclient import TestClient
     from app.main import app
+    from app.routers import analytics
+    
+    monkeypatch.setattr(
+        analytics, 
+        "careerflow_lakehouse_flow", 
+        lambda jobs: "Mocked Prefect Flow Completed"
+    )
     
     client = TestClient(app)
     # Use a dummy keyword like 'AI' which is in our local pool or falls back beautifully
