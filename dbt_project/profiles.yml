@@ -1,0 +1,8 @@
+careerflow_profile:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /home/cp/careerflow-ai/data/careerflow.db
+      schema: main
+      threads: 4

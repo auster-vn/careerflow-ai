@@ -1,0 +1,25 @@
+name: 'careerflow_dbt'
+version: '1.0.0'
+config-version: 2
+
+# Link to the profiles.yml connection parameters
+profile: 'careerflow_profile'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  careerflow_dbt:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
