@@ -140,9 +140,3 @@ pytest tests/
 ```
 
 ---
-
-## 💼 Portfolio Showcasing Highlights
-This project is an excellent demonstration of full-stack engineering, combining:
-* **Data Engineering (DE)**: Complex medallion pipelines, Prefect flow DAGs, partitioned Parquet structures, Polars engine optimizations, and dbt modeling.
-* **Machine Learning & MLOps**: Hyperparameter logging and artifact tracking with MLflow, versioned registry configurations, and real-time model servings (XGBoost) for analytics forecasts.
-* **Modern UI & UX**: Extracted layouts, centralized API services, speech synthesis TTS/STT, and comfortable, soft Slate dark theme layouts with responsive SVG charts.
