@@ -8,18 +8,18 @@
 
 ```mermaid
 flowchart TD
-    subgraph Ingestion Layer
+    subgraph "Ingestion Layer"
         S1[TopCV Scraper via curl_cffi] --> |Raw JSON| B[MinIO S3 Bronze Bucket]
         S2[VietnamWorks Payload Parser] --> |Raw JSON| B
     end
 
-    subgraph Data Lakehouse & ETL (Prefect)
+    subgraph "Data Lakehouse & ETL (Prefect)"
         B --> |Polars Dataframe ETL| Sil[MinIO S3 Silver Bucket]
         Sil --> |Polars deduplication| G[DuckDB CRM Gold Warehouse]
         G --> |dbt staging & dimensional models| Gold[DuckDB analytical Gold Marts]
     end
 
-    subgraph MLOps & AI Serving (MLflow & SQLite)
+    subgraph "MLOps & AI Serving (MLflow & SQLite)"
         Gold --> |Retrain Trigger| M1[XGBoost Salary Regressor]
         Gold --> |Retrain Trigger| M2[XGBoost Success Classifier]
         M1 & M2 --> |Register Models| MLF[MLflow Registry & sqlite store]
@@ -28,7 +28,7 @@ flowchart TD
         LDB --> |all-MiniLM-L6-v2 Cosine Similarity| Match[ATS Keyword Matcher]
     end
 
-    subgraph Web & UI serving (FastAPI & React)
+    subgraph "Web & UI Serving (FastAPI & React)"
         API[FastAPI Server] --> |Inference serving & CRUD| UI[React Board Kanban Board CRM]
         MLF --> |Serve active models| API
         Match --> |Report ATS metrics| API
